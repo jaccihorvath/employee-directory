@@ -1,5 +1,6 @@
 import React from 'react';
 import API from '../../API';
+import Container from '../Container/Container'
 
 
 
@@ -33,10 +34,42 @@ class UserInfo extends React.Component {
             });
     }
 
+    sortNames = () => {
+        let sorted = this.state.employees.sort((a, b) => {
+            let nameA = a.first;
+            let nameB = b.first;
+            if (nameA < nameB) {
+                return 1;
+            } else if (nameA > nameB) {
+                return -1
+            } else {
+                return 0
+            }
+        })
+        this.setState({employees: sorted})
+    }
+
+
 
     render() {
         return (
-            <tbody className="text-center">
+            <Container>
+                <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button onClick={this.sortNames} className="btn btn-success justify-content-md-end">Sort by Name</button>
+                </div>
+                <thead className="table-light text-center mx-auto">
+                <tr>
+                    <th className="text-center" scope="col"> </th>
+                        <th className="text-center" scope="col">First</th>
+                    <th className="text-center" scope="col">Last</th>
+                    <th className="text-center" scope="col">Email</th>
+                    <th className="text-center" scope="col">Phone</th>
+                    <th className="text-center" scope="col">Address</th>
+                    
+                </tr>
+                </thead>
+
+            <tbody className="text-center" sort={this.sortNames}>
                 {this.state.employees.map((res, index) => {
                     return (
                         <tr key={res.id}>
@@ -52,6 +85,7 @@ class UserInfo extends React.Component {
                     )
                 })}
                 </tbody>
+                // </Container>
         )
     }
 }

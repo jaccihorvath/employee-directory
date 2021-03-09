@@ -85,7 +85,7 @@ class UserInfo extends React.Component {
                     )
                 })}
                 </tbody>
-                // </Container>
+                </Container>
         )
     }
 }

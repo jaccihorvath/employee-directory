@@ -21,18 +21,7 @@ function Table(props) {
         <Container>
             <div className="justify-content-center mx-auto" style={style.tableStyle}>
             <table className="table table-hover table-responsive align-middle mx-auto">
-                <thead className="table-light text-center mx-auto">
-                    <tr>
-                        <th className="text-center" scope="col"> </th>
-                            <th className="text-center" scope="col">First</th>
-                        <th className="text-center" scope="col">Last</th>
-                        <th className="text-center" scope="col">Email</th>
-                        <th className="text-center" scope="col">Phone</th>
-                        <th className="text-center" scope="col">Address</th>
-                        
-                    </tr>
-                </thead>
-
+                
 
                     <UserInfo />
     

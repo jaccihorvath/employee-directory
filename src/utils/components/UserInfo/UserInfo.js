@@ -3,6 +3,16 @@ import API from '../../API';
 import Container from '../Container/Container'
 
 
+const style = {
+    button1: {
+        marginRight: "10px",
+        marginBottom: "20px"
+    },
+    button2: {
+        marginBottom: "20px"
+    }
+};
+
 
 class UserInfo extends React.Component {
     state = {
@@ -36,12 +46,27 @@ class UserInfo extends React.Component {
 
     sortNames = () => {
         let sorted = this.state.employees.sort((a, b) => {
-            let nameA = a.first;
-            let nameB = b.first;
+            let nameA = a.last;
+            let nameB = b.last;
             if (nameA < nameB) {
                 return 1;
             } else if (nameA > nameB) {
                 return -1
+            } else {
+                return 0
+            }
+        })
+        this.setState({employees: sorted})
+    }
+
+    sortNamesZ = () => {
+        let sorted = this.state.employees.sort((a, b) => {
+            let nameA = a.last;
+            let nameB = b.last;
+            if (nameA < nameB) {
+                return -1;
+            } else if (nameA > nameB) {
+                return 1
             } else {
                 return 0
             }
@@ -55,7 +80,8 @@ class UserInfo extends React.Component {
         return (
             <Container>
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button onClick={this.sortNames} className="btn btn-success justify-content-md-end">Sort by Name</button>
+                <button onClick={this.sortNamesZ} className="btn btn-info justify-content-md-end me-md-2" style={style.button1}>Sort (A-Z)</button>
+                <button onClick={this.sortNames} className="btn btn-info justify-content-md-end" style={style.button2}>Sort (Z-A)</button>
                 </div>
                 <thead className="table-light text-center mx-auto">
                 <tr>

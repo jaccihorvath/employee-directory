@@ -103,8 +103,8 @@ class UserInfo extends React.Component {
                 <thead className="table-light text-center mx-auto">
                 <tr>
                     <th className="text-center" scope="col"> </th>
-                        <th className="text-center" scope="col">First</th>
-                    <th className="text-center" scope="col">Last</th>
+                        <th className="text-center" scope="col">Last</th>
+                    <th className="text-center" scope="col">First</th>
                     <th className="text-center" scope="col">Email</th>
                     <th className="text-center" scope="col">Phone</th>
                         <th className="text-center" scope="col">Address</th>
@@ -119,8 +119,8 @@ class UserInfo extends React.Component {
                         <tr key={res.id}>
                        
                             <td><img src={res.image} className="rounded-circle" alt="headshot" /></td>
-                            <td>{res.first}</td>
                             <td>{res.last}</td>
+                            <td>{res.first}</td>
                             <td>{res.email}</td>
                             <td>{res.phone}</td>
                             <td>{res.address}</td>

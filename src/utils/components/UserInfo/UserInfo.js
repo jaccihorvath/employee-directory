@@ -82,8 +82,8 @@ class UserInfo extends React.Component {
         return (
             <Container>
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button onClick={this.sortNamesZ} className="btn btn-info justify-content-md-end me-md-2" style={style.button1}>Sort (A-Z)</button>
-                <button onClick={this.sortNames} className="btn btn-info justify-content-md-end" style={style.button2}>Sort (Z-A)</button>
+                <button onClick={this.sortNamesZ} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>Sort (A-Z)</button>
+                <button onClick={this.sortNames} className="btn btn-sm btn-info justify-content-md-end" style={style.button2}>Sort (Z-A)</button>
                 </div>
                 <thead className="table-light text-center mx-auto">
                 <tr>

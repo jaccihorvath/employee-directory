@@ -17,8 +17,7 @@ const style = {
 class UserInfo extends React.Component {
     state = {
         employees: [{}],
-        sorted: [{}],
-        unsorted: [{}]
+        original: [{}]
     };
 
 
@@ -37,14 +36,13 @@ class UserInfo extends React.Component {
                         age: user.dob.age,
                         id: user.login.uuid,
                         country: user.location.country,
-                        gender: user.gender
                     };
                 });
                 console.log(res.data.results)
                 console.log(employeeArray);
                 this.setState({
                     employees: employeeArray,
-                    unsorted: employeeArray,
+                    original: employeeArray,
                 })
             });
     }
@@ -87,7 +85,7 @@ class UserInfo extends React.Component {
     }
 
     clearFilters = () => {
-        const original = this.state.unsorted;
+        const original = this.state.original;
         this.setState({employees: original})
     }
 
@@ -97,9 +95,9 @@ class UserInfo extends React.Component {
         return (
             <Container>
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button onClick={this.usOnly} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>US only</button>
-                    <button onClick={this.sortNamesZ} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>Sort (A-Z)</button>
-                    <button onClick={this.sortNames} className="btn btn-sm btn-info justify-content-md-end" style={style.button1}>Sort (Z-A)</button>
+                    <button onClick={this.sortNamesZ} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>Sort Name (A-Z)</button>
+                    <button onClick={this.sortNames} className="btn btn-sm btn-info justify-content-md-end" style={style.button1}>Sort Name (Z-A)</button>
+                    <button onClick={this.usOnly} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>US only</button>
                     <button onClick={this.clearFilters} className="btn btn-sm btn-success justify-content-md-end me-md-2" style={style.button2}>Reset</button>
                 </div>
                 <thead className="table-light text-center mx-auto">
@@ -109,7 +107,8 @@ class UserInfo extends React.Component {
                     <th className="text-center" scope="col">Last</th>
                     <th className="text-center" scope="col">Email</th>
                     <th className="text-center" scope="col">Phone</th>
-                    <th className="text-center" scope="col">Address</th>
+                        <th className="text-center" scope="col">Address</th>
+                        <th className="text-center" scope="col">Country</th>
                     
                 </tr>
                 </thead>
@@ -125,6 +124,7 @@ class UserInfo extends React.Component {
                             <td>{res.email}</td>
                             <td>{res.phone}</td>
                             <td>{res.address}</td>
+                            <td>{res.country}</td>
                            
                         </tr>
                     )

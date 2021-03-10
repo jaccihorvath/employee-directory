@@ -6,12 +6,10 @@ import Container from '../Container/Container'
 const style = {
     button1: {
         marginRight: "10px",
-        marginBottom: "20px",
-        marginTop: "20px"
+        marginBottom: "20px"
     },
     button2: {
-        marginBottom: "20px",
-        marginTop: "20px"
+        marginBottom: "20px"
     }
 };
 
@@ -20,6 +18,7 @@ class UserInfo extends React.Component {
     state = {
         employees: [{}],
         sorted: [{}],
+        unsorted: [{}]
     };
 
 
@@ -36,12 +35,16 @@ class UserInfo extends React.Component {
                         phone: user.phone,
                         address: user.location.street.number + " " + user.location.street.name + ", " + user.location.city + ", " + user.location.state + " " + user.location.postcode,
                         age: user.dob.age,
-                        id: user.login.uuid
+                        id: user.login.uuid,
+                        country: user.location.country,
+                        gender: user.gender
                     };
                 });
+                console.log(res.data.results)
                 console.log(employeeArray);
                 this.setState({
-                    employees: employeeArray
+                    employees: employeeArray,
+                    unsorted: employeeArray,
                 })
             });
     }
@@ -76,14 +79,28 @@ class UserInfo extends React.Component {
         this.setState({employees: sorted})
     }
 
+    usOnly = () => {
+        let filtered = this.state.employees.filter(employee => {return employee.country === 'United States'})
+        console.log(filtered)
+        this.setState({ employees: filtered }) 
+        
+    }
+
+    clearFilters = () => {
+        const original = this.state.unsorted;
+        this.setState({employees: original})
+    }
+
 
 
     render() {
         return (
             <Container>
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button onClick={this.sortNamesZ} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>Sort (A-Z)</button>
-                <button onClick={this.sortNames} className="btn btn-sm btn-info justify-content-md-end" style={style.button2}>Sort (Z-A)</button>
+                <button onClick={this.usOnly} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>US only</button>
+                    <button onClick={this.sortNamesZ} className="btn btn-sm btn-info justify-content-md-end me-md-2" style={style.button1}>Sort (A-Z)</button>
+                    <button onClick={this.sortNames} className="btn btn-sm btn-info justify-content-md-end" style={style.button1}>Sort (Z-A)</button>
+                    <button onClick={this.clearFilters} className="btn btn-sm btn-success justify-content-md-end me-md-2" style={style.button2}>Reset</button>
                 </div>
                 <thead className="table-light text-center mx-auto">
                 <tr>

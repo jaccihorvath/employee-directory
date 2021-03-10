@@ -6,10 +6,12 @@ import Container from '../Container/Container'
 const style = {
     button1: {
         marginRight: "10px",
-        marginBottom: "20px"
+        marginBottom: "20px",
+        marginTop: "20px"
     },
     button2: {
-        marginBottom: "20px"
+        marginBottom: "20px",
+        marginTop: "20px"
     }
 };
 
